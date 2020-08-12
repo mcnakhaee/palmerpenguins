@@ -4,6 +4,7 @@ The [Palmer penguins dataset](https://allisonhorst.github.io/palmerpenguins/) by
 Using this python package you can easily load the Palmer penguins into your python environment. 
 
 ![Artwork by @allison_horst](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png "Artwork by @allison_horst")
+Artwork by @allison_horst
 
 ### Installation
 
@@ -47,7 +48,7 @@ g.set_xlabel('Island')
 g.set_ylabel('Body Mass')
 ```
 <p align="center">
- <img width="300" src="docs/artworks/box_plot.PNG" />
+ <img width="600" src="docs/artworks/box_plot.PNG" />
 </p>
 
 ```python
@@ -61,7 +62,7 @@ g.set_xlabels('Flipper Length')
 g.set_ylabels('Body Mass')
 ```
 <p align="center">
- <img width="300" src="docs/artworks/lm_plot.PNG" />
+ <img width="600" src="docs/artworks/lm_plot.PNG" />
 </p>
 
 ### License 
