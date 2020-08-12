@@ -28,5 +28,3 @@ penguins = (
  penguins_raw_df
  .pipe(clean_names)
 )
-print(penguins.columns)
-print(penguins_raw_df.columns)
