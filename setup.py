@@ -1,16 +1,14 @@
 from setuptools import setup
-import os
-import numpy
-import platform
+import setuptools
 setup(name='palmerpenguins',
-      version='0.1.1',
+      version='0.1.2',
       url="https://github.com/mcnakhaee/palmerpenguins",
-      description="A python wrapper for palmer penguins's dataset",
-      long_description=open('README.md').read(),
+      description="A python package for the palmer penguins dataset ",
+      long_description=open('DESCRIPTION.rst').read(),
       author='Muhammad Chenariyan Nakhaee',
       author_emai='mcnakhaee@gmail.com',
       packages = ['palmerpenguins'],
-      install_requires=['pandas', 'seaborn', 'numpy'],
+      install_requires=['pandas', 'numpy'],
       include_package_data=True,
       package_data={'': ['data/*.csv']},
       )
