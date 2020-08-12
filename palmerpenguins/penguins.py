@@ -40,7 +40,7 @@ def load_penguins(return_X_y=False):
       =================   ==============
 
       (data, target) : tuple if ``return_X_y`` is True
-          data : a dataframe of shape (344  , 4)   where each column corresponds to measurements
+          data : a dataframe of shape (344  , 4)  where each column corresponds to one of the four size measurements of penguins including bill_length_mm, bill_depth_mm, flipper_length_mm and body_mass_g.
           target: {ndarray, Series} of shape (344,)
               The classification target (i.e. penguin species).
       --------
@@ -78,7 +78,16 @@ def load_penguins_raw():
       =================   ==============
 
 
-      Columns
+
+
+      Read more in the :ref:`https://github.com/allisonhorst/palmerpenguins`.
+
+      Returns
+      -------
+      data : :class:`pandas.core.frame.DataFrame`
+          data : a dataframe of shape (344  , 17) and has the following columns:
+
+          Columns
       =================   ==============
       studyName            Sampling expedition from which data were collected, generated, etc.
       Sample Number        an integer denoting the continuous numbering sequence for each sample
@@ -98,13 +107,6 @@ def load_penguins_raw():
       Delta 13 C           a number denoting the measure of the ratio of stable isotopes 13C:12C
       Comments             a character string with text providing additional relevant information for data
       =================   ==============
-
-      Read more in the :ref:`https://github.com/allisonhorst/palmerpenguins`.
-
-      Returns
-      -------
-      data : :class:`pandas.core.frame.DataFrame`
-          data : a dataframe of shape (344  , 17)
       --------
       Let's say you are interested in the samples 1, 160, and 300, and want to
       know more about the islands where they were observed:
