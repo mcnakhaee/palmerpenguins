@@ -12,27 +12,12 @@ Size measurements, clutch observations, and blood isotope ratios for 344 adult f
 Examples
 ~~~~~~~~~~~~~~~~~~~~~~
 ```
-import pandas as pd
-import seaborn as sns
 from palmerpenguins import load_penguins
-sns.set_style('whitegrid')
 ```
 
-
-
-```python
+```
 penguins = load_penguins()
 ```
-
-
-g = sns.boxplot(x = 'island',
-            y ='body_mass_g',
-            hue = 'species',
-            data = penguins,
-            palette=['#FF8C00','#159090','#A034F0'],
-            linewidth=0.3)
-g.set_xlabel('Island')
-g.set_ylabel('Body Mass')
 
 
 
