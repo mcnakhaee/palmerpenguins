@@ -65,6 +65,36 @@ g.set_ylabels('Body Mass')
  <img width="600" src="docs/artworks/lm_plot.PNG" />
 </p>
 
+#### Machine learning
+You can also use the penguins dataset for training a machine learning model that can predict a penguin's specie from its size measurements.
+ `load_penguins()` will return a tuple (X,y) if you set `return_X_y = True`. Here, X includes only 4 size measurements variables and y corresponds to the species variable.   
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import FeatureUnion, make_pipeline
+from sklearn.metrics import confusion_matrix
+### To deal with missing values
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+from sklearn.tree import DecisionTreeClassifier
+
+X,y = load_penguins(return_X_y = True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=100,
+                                            random_state=0)
+```
+```python
+imp = IterativeImputer(max_iter=10, random_state=0)
+clf = make_pipeline(imp, DecisionTreeClassifier())
+clf = clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+print(confusion_matrix(y_test,y_pred,labels=['Adelie','Chinstrap','Gentoo']))
+array([[47,  1,  0],
+       [ 3, 17,  0],
+       [ 0,  0, 32]], dtype=int64)
+```
+```python
+print(clf.score(X_test,y_test))
+0.96
+```
 ### License 
 Data are available by
 [CC-0](https://creativecommons.org/share-your-work/public-domain/cc0/) license in
