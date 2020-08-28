@@ -5,7 +5,7 @@ import os
 from os.path import dirname, exists, expanduser, isdir, join, splitext
 
 
-def load_penguins(return_X_y=False):
+def load_penguins(return_X_y=False,drop_na = False):
     """Load and return the penguins dataset (classification).
 
       The Palmer penguins dataset is a dataset for data exploration & visualization, and can be used as an
@@ -56,6 +56,8 @@ def load_penguins(return_X_y=False):
 
     stream = pkg_resources.resource_stream(__name__, 'data/penguins.csv')
     penguins = pd.read_csv(stream)
+    if drop_na:
+        penguins.dropna(inplace = True)
     if return_X_y:
         data = penguins[['bill_length_mm', 'bill_depth_mm',
                          'flipper_length_mm', 'body_mass_g']]
