@@ -1,7 +1,7 @@
 from setuptools import setup
 import setuptools
 setup(name='palmerpenguins',
-      version='0.1.2',
+      version='0.1.3',
       url="https://github.com/mcnakhaee/palmerpenguins",
       description="A python package for the palmer penguins dataset ",
       long_description=open('DESCRIPTION.rst').read(),
