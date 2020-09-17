@@ -23,6 +23,8 @@ def load_penguins(return_X_y=False,drop_na = False):
       return_X_y : bool, default=False
           If True, returns a ``(data, target)`` tuple instead of a dataframe object.
           See below for more information about the `data` and `target` object.
+      drop_na: bool, default=False
+      If True drop rows from dataset that contain missing values. Only available when `return_X_y = True`
 
       Returns
       -------
@@ -56,12 +58,14 @@ def load_penguins(return_X_y=False,drop_na = False):
 
     stream = pkg_resources.resource_stream(__name__, 'data/penguins.csv')
     penguins = pd.read_csv(stream)
-    if drop_na:
-        penguins.dropna(inplace = True)
     if return_X_y:
+        if drop_na:
+            penguins.dropna(inplace = True)
         data = penguins[['bill_length_mm', 'bill_depth_mm',
                          'flipper_length_mm', 'body_mass_g']]
         target = penguins['species']
+
+
         return data, target
 
     return penguins
