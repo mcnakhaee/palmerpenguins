@@ -66,7 +66,7 @@ g.set_ylabels('Body Mass')
 </p>
 
 #### Machine learning
-You can also use the penguins dataset for training a machine learning model that can predict a penguin's specie from its size measurements.
+You can also use the penguins dataset for training a machine learning model that can predict a penguin's species from its size measurements.
  `load_penguins()` will return a tuple (X,y) if you set `return_X_y = True`. Here, X includes only 4 size measurements variables and y corresponds to the species variable.   
 ```python
 from sklearn.model_selection import train_test_split
