@@ -9,9 +9,9 @@ setup(
     author="Muhammad Chenariyan Nakhaee",
     author_emai="mcnakhaee@gmail.com",
     packages=["palmerpenguins"],
-    install_requires=["pandas", "numpy"],
+    install_requires=["pandas", "numpy", "janitor"],
     extras_require={
-        "dev": ["pandas-stubs"],
+        "dev": ["pandas-stubs", "pyright"],
     },
     include_package_data=True,
     package_data={"": ["data/*.csv"]},
