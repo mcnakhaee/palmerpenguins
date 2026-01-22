@@ -1,5 +1,18 @@
 import pandas as pd
 import importlib.resources
+from typing import overload, Literal, Tuple
+
+
+@overload
+def load_penguins(
+    return_X_y: Literal[False] = False, drop_na: bool = False
+) -> pd.DataFrame: ...
+
+
+@overload
+def load_penguins(
+    return_X_y: Literal[True], drop_na: bool = False
+) -> Tuple[pd.DataFrame, pd.Series]: ...
 
 
 def load_penguins(return_X_y=False, drop_na=False):
@@ -74,7 +87,7 @@ def load_penguins(return_X_y=False, drop_na=False):
     return penguins
 
 
-def load_penguins_raw():
+def load_penguins_raw() -> pd.DataFrame:
     """Load and return the raw penguins dataset (classification).
     Data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network.
     It Includes all the variables and original names, nesting observations, penguin size data, and isotope measurements from blood samples for adult Adélie, Chinstrap, and Gentoo penguins.
