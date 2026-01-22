@@ -10,6 +10,9 @@ setup(
     author_emai="mcnakhaee@gmail.com",
     packages=["palmerpenguins"],
     install_requires=["pandas", "numpy"],
+    extras_require={
+        "dev": ["pandas-stubs"],
+    },
     include_package_data=True,
     package_data={"": ["data/*.csv"]},
 )
