@@ -4,7 +4,7 @@ from functools import partial
 from janitor import clean_names
 
 
-#Download Data
+# Download Data
 # ------------------------------------------------------------
 # Adelie penguin data from: https://doi.org/10.6073/pasta/abc50eed9138b75f54eaada0841b9b86
 uri_adelie = "https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-pal.219.3&entityid=002f3893385f710df69eeebe893144ff"
@@ -17,14 +17,11 @@ uri_chinstrap = "https://portal.edirepository.org/nis/dataviewer?packageid=knb-l
 
 uris = [uri_adelie, uri_gentoo, uri_chinstrap]
 
-dfs = list(map(partial(pd.read_csv,na_values = ["", "NA", "."]),uris))
+dfs = list(map(partial(pd.read_csv, na_values=["", "NA", "."]), uris))
 
 penguins_raw_df = pd.concat(dfs)
 
 # Clean Data
-#--------------------------------------------------------------
+# --------------------------------------------------------------
 
-penguins = (
- penguins_raw_df
- .pipe(clean_names)
-)
+penguins = penguins_raw_df.pipe(clean_names)
