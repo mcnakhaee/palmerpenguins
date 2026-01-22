@@ -15,7 +15,9 @@ def load_penguins(
 ) -> Tuple[pd.DataFrame, pd.Series]: ...
 
 
-def load_penguins(return_X_y=False, drop_na=False):
+def load_penguins(
+    return_X_y: bool = False, drop_na: bool = False
+) -> pd.DataFrame | Tuple[pd.DataFrame, pd.Series]:
     """Load and return the penguins dataset (classification).
 
     The Palmer penguins dataset is a dataset for data exploration & visualization, and can be used as an
