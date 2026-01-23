@@ -1,6 +1,6 @@
 import pandas as pd
 import importlib.resources
-from typing import overload, Literal, Tuple
+from typing import overload, Literal, Tuple, cast
 
 
 @overload
@@ -30,13 +30,14 @@ def load_penguins(
     Features            real, integer, string, positive
     =================   ==============
     Read more in the :ref:`https://github.com/allisonhorst/palmerpenguins>`.
+
     Parameters
     ----------
     return_X_y : bool, default=False
         If True, returns a ``(data, target)`` tuple instead of a dataframe object.
         See below for more information about the `data` and `target` object.
     drop_na: bool, default=False
-    If True drop rows from dataset that contain missing values. Only available when `return_X_y = True`
+        If True drop rows from dataset that contain missing values. Only available when `return_X_y = True`
 
     Returns
     -------
@@ -52,11 +53,12 @@ def load_penguins(
     sex                  a string denoting penguin sex (female, male)
     year                 an integer denoting the study year (2007, 2008, or 2009)
     =================   ==============
-
     (data, target) : tuple if ``return_X_y`` is True
         data : a dataframe of shape (344  , 4)  where each column corresponds to one of the four size measurements of penguins including bill_length_mm, bill_depth_mm, flipper_length_mm and body_mass_g.
         target: {ndarray, Series} of shape (344,)
             The classification target (i.e. penguin species).
+
+    Examples
     --------
     Let's say you are interested in the samples 10, 80, and 140, and want to
     know their class name.
@@ -66,8 +68,8 @@ def load_penguins(
     ['Adelie', 'Gentoo', 'Chinstrap']
     >>> dict(pd.value_counts(penguins.species))
     {'Adelie': 152, 'Gentoo': 124, 'Chinstrap': 68}
-    """
 
+    """
     with (
         importlib.resources.files(__package__)
         .joinpath("data/penguins.csv")
@@ -79,10 +81,13 @@ def load_penguins(
         penguins.dropna(inplace=True)
 
     if return_X_y:
-        data = penguins[
-            ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
-        ]
-        target = penguins["species"]
+        data = cast(
+            pd.DataFrame,
+            penguins[
+                ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+            ],
+        )
+        target = cast(pd.Series, penguins["species"])
 
         return data, target
 
@@ -91,7 +96,9 @@ def load_penguins(
 
 def load_penguins_raw() -> pd.DataFrame:
     """Load and return the raw penguins dataset (classification).
+
     Data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network.
+
     It Includes all the variables and original names, nesting observations, penguin size data, and isotope measurements from blood samples for adult Adélie, Chinstrap, and Gentoo penguins.
     =================   ==============
     Classes                          3
@@ -100,9 +107,6 @@ def load_penguins_raw() -> pd.DataFrame:
     Dimensionality                  17
     Features            real, integer, string, positive
     =================   ==============
-
-
-
 
     Read more in the :ref:`https://github.com/allisonhorst/palmerpenguins`.
 
@@ -131,6 +135,8 @@ def load_penguins_raw() -> pd.DataFrame:
     Delta 13 C           a number denoting the measure of the ratio of stable isotopes 13C:12C
     Comments             a character string with text providing additional relevant information for data
     =================   ==============
+
+    Examples
     --------
     Let's say you are interested in the samples 1, 160, and 300, and want to
     know more about the islands where they were observed:
@@ -140,6 +146,7 @@ def load_penguins_raw() -> pd.DataFrame:
     ['Torgersen', 'Biscoe', 'Dream']
     >>> dict(pd.value_counts(penguins_raw.Species))
     {'Adelie Penguin (Pygoscelis adeliae)': 152, 'Gentoo penguin (Pygoscelis papua)': 124, 'Chinstrap penguin (Pygoscelis antarctica)': 68}
+
     """
     with (
         importlib.resources.files(__package__)
