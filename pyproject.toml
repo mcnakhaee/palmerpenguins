@@ -14,7 +14,7 @@ authors = [
 ]
 dependencies = ["pandas", "numpy"]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
   "pandas-stubs",
   "pyright",
@@ -24,6 +24,7 @@ dev = [
   "tox",
   "tox-uv",
 ]
+# `uv pip install -e '.[base]'`
 base = ["janitor"]
 
 [project.urls]
@@ -40,7 +41,8 @@ palmerpenguins = ["data/*.csv", "py.typed"]
 include = ["palmerpenguins"]
 exclude = [".venv", "build", "dist", "**/palmerpenguins/_base.py"]
 
-#
+# Test using `uv run --group dev tox --parallel`
+# ~ 5s after initial run
 [tool.tox]
 requires = ["tox>=4"]
 env_list = [
