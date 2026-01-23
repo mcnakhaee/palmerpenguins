@@ -1,4 +1,0 @@
-{
-  "include": ["palmerpenguins"],
-  "exclude": [".venv", "build", "dist", "**/palmerpenguins/_base.py"]
-}
