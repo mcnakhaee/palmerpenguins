@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "palmerpenguins"
+version = "0.1.4"
+description = "A python package for the palmer penguins dataset"
+readme = "DESCRIPTION.rst"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Muhammad Chenariyan Nakhaee", email = "mcnakhaee@gmail.com" },
+]
+dependencies = ["pandas", "numpy"]
+
+[dependency-groups]
+dev = [
+  "pandas-stubs",
+  "pyright",
+  "pytest",
+  "pydocstyle",
+  "pycodestyle",
+  "tox",
+  "tox-uv",
+]
+# `uv pip install -e '.[base]'`
+base = ["janitor"]
+
+[project.urls]
+Homepage = "https://github.com/mcnakhaee/palmerpenguins"
+
+[tool.setuptools]
+packages = ["palmerpenguins"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+palmerpenguins = ["data/*.csv", "py.typed"]
+
+[tool.pyright]
+include = ["palmerpenguins"]
+exclude = [".venv", "build", "dist", "**/palmerpenguins/_base.py"]
+
+# Test using `uv run --group dev tox --parallel`
+# ~ 5s after initial run
+[tool.tox]
+requires = ["tox>=4"]
+env_list = [
+  "docstyle",
+  "codestyle",
+  "typing",
+  "3.14",
+  "3.13",
+  "3.12",
+  "3.11",
+  "3.10",
+]
+
+[tool.tox.env_run_base]
+description = "Run tests under {envname}"
+deps = ["numpy", "pandas", "pydocstyle", "pycodestyle", "pytest"]
+commands = [["pytest"]]
+
+[tool.tox.env.docstyle]
+description = "run pydocstyle checks"
+skip_install = true
+deps = ["pydocstyle"]
+commands = [
+  [
+    "pydocstyle",
+    { replace = "posargs", default = [
+      "--ignore=D100,D104,D213",
+      "palmerpenguins/",
+    ], extend = true },
+  ],
+]
+
+[tool.tox.env.codestyle]
+description = "run pycodestyle checks"
+deps = ["pycodestyle"]
+commands = [
+  [
+    "pycodestyle",
+    { replace = "posargs", default = [
+      "--ignore=E501,E704",
+      "palmerpenguins/",
+    ], extend = true },
+  ],
+]
+
+[tool.tox.env.typing]
+description = "run pyright checks"
+deps = ["pyright"]
+commands = [
+  [
+    "pyright",
+    { replace = "posargs", default = [
+      "palmerpenguins/",
+    ], extend = true },
+  ],
+]

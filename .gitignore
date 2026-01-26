@@ -1,0 +1,7 @@
+
+
+*.egg-info
+.claude/*.local.*
+uv.lock
+.tox/
+__pycache__/
