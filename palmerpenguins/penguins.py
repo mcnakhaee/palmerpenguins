@@ -1,6 +1,6 @@
 import pandas as pd
 import importlib.resources
-from typing import overload, Literal, Tuple, cast
+from typing import Union, overload, Literal, Tuple, cast
 
 
 @overload
@@ -17,7 +17,7 @@ def load_penguins(
 
 def load_penguins(
     return_X_y: bool = False, drop_na: bool = False
-) -> pd.DataFrame | Tuple[pd.DataFrame, pd.Series]:
+) -> Union[pd.DataFrame, Tuple[pd.DataFrame, pd.Series]]:
     """Load and return the penguins dataset (classification).
 
     The Palmer penguins dataset is a dataset for data exploration & visualization, and can be used as an
